@@ -1,10 +1,11 @@
+import 'package:bmi_calculator/components/control_content.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'control_content.dart';
-import 'results_page.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
 
 enum Gender { male, female }
 
@@ -38,7 +39,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: selectedGender == Gender.male ? kActiveCardColor : kInactiveCardColor,
-                    cardChild: new IconContent(
+                    cardChild: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                     ),
@@ -154,8 +155,9 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            label: 'CALCULATE',
+            onPress: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -163,18 +165,7 @@ class _InputPageState extends State<InputPage> {
                 ),
               );
             },
-            child: Container(
-              height: kBottomContainerHeight,
-              color: kAccentColor,
-              padding: const EdgeInsets.only(bottom: 28),
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  style: kLargeButtonTextStyle
-                ),
-              ),
-            ),
-          )
+          ),
         ],
       ),
     );
